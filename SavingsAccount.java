@@ -35,12 +35,14 @@ public class SavingsAccount {
         SavingsAccount.annualInterestRate = annualInterestRate;
     }
 
-    public static void transferFunds(SavingsAccount account1, SavingsAccount account2, double amount) {
+    public static int transferFunds(SavingsAccount account1, SavingsAccount account2, double amount) {
         if (account1.savingsBalance > amount || account1.savingsBalance == amount) {
             account2.savingsBalance += amount;
             account1.savingsBalance -= amount;
+            return 1;
         } else {
             System.out.println("Sorry, not enough money in the account.");
+            return 0;
         }
     }
 }

@@ -1,36 +1,31 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+
 
 public class SavingsAccountTest {
     SavingsAccount savingsAccount = new SavingsAccount("Hermione Granger", 10500);
     SavingsAccount savingsAccount1 = new SavingsAccount("Harry Potter", 14700);
 
     @Test
-        public void CalculateMonthlyInterestTest() {
+    void calculateMonthlyInterestTest() {
         SavingsAccount.modifyInterestRate(0.01);
-        assertEquals(9.00, savingsAccount.calculateMonthlyInterest());
+        assertEquals(8.75, savingsAccount.calculateMonthlyInterest());
     }
 
     @Test
-    public void transferFundsTest(){
+    void transferFundsTest(){
         SavingsAccount.transferFunds(savingsAccount1, savingsAccount, 4300);
         assertEquals(14800, savingsAccount.getSavingsBalance());
         assertEquals(10400.0, savingsAccount1.getSavingsBalance());
     }
 
     @Test
-    public void compareSavingsBalanceTest(){
-        assertFalse(savingsAccount.getSavingsBalance() > savingsAccount1.getSavingsBalance());
+    void invalidDataTransferFundsTest() {
+        assertEquals(0, SavingsAccount.transferFunds(savingsAccount1, savingsAccount, 20485));
     }
-
-    @DisplayName("Not the same object reference.")
-    @Test
-    public void compareObjectReferencesTest(){
-            assertSame(10500.0, savingsAccount.getSavingsBalance());
-    }
-
 
 
 }
